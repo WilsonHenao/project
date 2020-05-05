@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,7 +26,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Users implements Serializable {
+@Table(name = "Usuario")
+public class UserEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,5 +44,5 @@ public class Users implements Serializable {
     
     @JoinColumn(nullable = false)
     @OneToOne
-    private RoleUser roleUser;
+    private RoleEntity roleUser;
 }
