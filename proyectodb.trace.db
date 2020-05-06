@@ -381,3 +381,22 @@ ALTER TABLE Usuario DROP CONSTRAINT Rol_Usuario [90057-200]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
+2020-05-06 11:52:11 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "CREATE TABLE EXAMEN (
+ID INT AUTO_INCREMENT,
+INTRODUCCION VARCHAR(300) NOT NULL,
+MAXIMA_NOTA INT NOT NULL,
+CONSTRAINT EXAMEN_PK PRIMARY KEY (ID),
+)[*]"; se esperaba "identifier"
+Syntax error in SQL statement "CREATE TABLE EXAMEN (
+ID INT AUTO_INCREMENT,
+INTRODUCCION VARCHAR(300) NOT NULL,
+MAXIMA_NOTA INT NOT NULL,
+CONSTRAINT EXAMEN_PK PRIMARY KEY (ID),
+)[*]"; expected "identifier"; SQL statement:
+CREATE TABLE Examen (
+Id int AUTO_INCREMENT,
+Introduccion varchar(300) not null,
+Maxima_Nota int not null,
+CONSTRAINT Examen_pk PRIMARY KEY (Id),
+) [42001-200]

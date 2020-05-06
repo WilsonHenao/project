@@ -29,7 +29,6 @@ public class RoleService {
         RoleEntity role = modelMapper.map(roleEntity, RoleEntity.class);
         role = roleRepository.save(role);
         RoleDto resp = modelMapper.map(role, RoleDto.class);
-        System.out.println(role);
         
         return resp;
     }
