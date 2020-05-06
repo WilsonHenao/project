@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,16 +31,15 @@ public class UserEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false)
+    @Column(name = "Nombre", nullable = false)
     private String name;
     
-    @Column(nullable = false)
+    @Column(name = "Nombre_Usuario", nullable = false)
     private String username;
     
-    @Column(nullable = false)
+    @Column(name = "Clave", nullable = false)
     private String password;
     
-    @JoinColumn(nullable = false)
-    @OneToOne
-    private RoleEntity roleUser;
+    @Column(name = "Rol_Usuario", nullable = false)
+    private int roleUser;
 }

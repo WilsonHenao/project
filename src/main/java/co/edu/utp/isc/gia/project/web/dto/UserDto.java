@@ -5,9 +5,9 @@
  */
 package co.edu.utp.isc.gia.project.web.dto;
 
-import co.edu.utp.isc.gia.project.data.entity.RoleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -15,11 +15,12 @@ import lombok.Builder;
  */
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 public class UserDto {
     private String name;
     private String username;
     private String password;
-    private RoleEntity roleEntity;
+    private int roleUser;
 
     public String getName() {
         return name;
@@ -45,11 +46,11 @@ public class UserDto {
         this.password = password;
     }
 
-    public RoleEntity getRoleEntity() {
-        return roleEntity;
+    public int getRoleUser() {
+        return roleUser;
     }
 
-    public void setRoleEntity(RoleEntity roleUser) {
-        this.roleEntity = roleEntity;
+    public void setRoleUser(int roleUser) {
+        this.roleUser = roleUser;
     }
 }
