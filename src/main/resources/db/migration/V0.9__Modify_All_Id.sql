@@ -1,0 +1,16 @@
+
+ALTER TABLE Examen ALTER COLUMN Id bigint;
+
+ALTER TABLE Notas ALTER COLUMN Id bigint;
+
+ALTER TABLE Opciones ALTER COLUMN Id bigint;
+
+ALTER TABLE Pregunta ALTER COLUMN Id bigint;
+
+ALTER TABLE Respuestas ALTER COLUMN Id bigint;
+
+ALTER TABLE Rol ALTER COLUMN Id bigint;
+
+ALTER TABLE Tipo_de_Respuesta ALTER COLUMN Id bigint;
+
+ALTER TABLE Usuario ALTER COLUMN Id bigint;

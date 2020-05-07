@@ -5,8 +5,8 @@
  */
 package co.edu.utp.isc.gia.project.web.controller;
 
-import co.edu.utp.isc.gia.project.service.ExamService;
-import co.edu.utp.isc.gia.project.web.dto.ExamDto;
+import co.edu.utp.isc.gia.project.service.AnswerService;
+import co.edu.utp.isc.gia.project.web.dto.AnswerDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,29 +19,27 @@ import org.springframework.web.bind.annotation.RestController;
  * @author wilso
  */
 @RestController
-@RequestMapping("api/v1/exam")
-public class ExamController {
-    private final ExamService examService;
+@RequestMapping("api/v1/answer")
+public class AnswerController {
+    private final AnswerService answerService;
     
-    public ExamController(ExamService examService){
-        this.examService = examService;
+    public AnswerController(AnswerService answerService){
+        this.answerService = answerService;
     }
     
     @PostMapping
-    public ResponseEntity<?>insert(@RequestBody ExamDto examEntity){
-        if(examEntity == null){
+    public ResponseEntity<?>insert(@RequestBody AnswerDto answerEntity){
+        if(answerEntity == null){
             return ResponseEntity.badRequest().body("Dato no válido");
         }
         
-        ExamDto exam;
+        AnswerDto answer;
         try {
-            exam = examService.save(examEntity);
+            answer = answerService.save(answerEntity);
         } catch (Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
         
-        return ResponseEntity.status(HttpStatus.CREATED).body(exam);
+        return ResponseEntity.status(HttpStatus.CREATED).body(answer);
     }
-    
-    
 }
