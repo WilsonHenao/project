@@ -5,7 +5,6 @@
  */
 package co.edu.utp.isc.gia.project.web.dto;
 
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -17,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class ExamDto implements Serializable{
+public class ExamDto {
     private String introduction;
     private int maximumNote;
 
