@@ -28,8 +28,8 @@ public class NoteService {
     public NoteDto save(NoteDto noteEntity) throws Exception {
         NoteEntity note = modelMapper.map(noteEntity, NoteEntity.class);
         note = noteRepository.save(note);
-        NoteDto resp = modelMapper.map(note, NoteDto.class);
+        NoteDto dto = modelMapper.map(note, NoteDto.class);
         
-        return resp;
+        return dto;
     }
 }

@@ -41,8 +41,8 @@ public class UserService {
         
         UserEntity user = modelMapper.map(userEntity, UserEntity.class);
         user = userRepository.save(user);
-        UserDto resp = modelMapper.map(user, UserDto.class);
+        UserDto dto = modelMapper.map(user, UserDto.class);
         
-        return resp;
+        return dto;
     }
 }

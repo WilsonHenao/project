@@ -8,6 +8,8 @@ package co.edu.utp.isc.gia.project.service;
 import co.edu.utp.isc.gia.project.data.entity.TypeOfResponseEntity;
 import co.edu.utp.isc.gia.project.data.repository.TypeOfResponseRepository;
 import co.edu.utp.isc.gia.project.web.dto.TypeOfResponseDto;
+import java.util.ArrayList;
+import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +30,18 @@ public class TypeOfResponseService {
     public TypeOfResponseDto save(TypeOfResponseDto typeOfResponseEntity) throws Exception{
         TypeOfResponseEntity typeOfResponse = modelMapper.map(typeOfResponseEntity, TypeOfResponseEntity.class);
         typeOfResponse = typeOfResponseRepository.save(typeOfResponse);
-        TypeOfResponseDto resp = modelMapper.map(typeOfResponse, TypeOfResponseDto.class);
+        TypeOfResponseDto dto = modelMapper.map(typeOfResponse, TypeOfResponseDto.class);
         
-        return resp;
+        return dto;
+    }
+    
+    public List<TypeOfResponseDto> findAll(){
+        Iterable<TypeOfResponseEntity> list = typeOfResponseRepository.findAll();
+        List<TypeOfResponseDto> dtos = new ArrayList();
+        for(TypeOfResponseEntity entity : list) {
+            dtos.add(modelMapper.map(entity, TypeOfResponseDto.class));
+        }
+        return dtos;
     }
     
 }

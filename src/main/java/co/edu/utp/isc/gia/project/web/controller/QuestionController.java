@@ -34,13 +34,13 @@ public class QuestionController {
             return ResponseEntity.badRequest().body("Dato no válido");
         }
         
-        QuestionDto resp;
+        QuestionDto dto;
         try {
-            resp = questionService.save(questionEntity);
+            dto = questionService.save(questionEntity);
         } catch (Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
         
-        return ResponseEntity.status(HttpStatus.CREATED).body(resp);
+        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 }

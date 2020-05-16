@@ -34,13 +34,13 @@ public class OptionsController {
             return ResponseEntity.badRequest().body("Datos no válidos");
         }
         
-        OptionsDto resp;
+        OptionsDto dto;
         try {
-            resp = optionsService.save(optionsEntity);
+            dto = optionsService.save(optionsEntity);
         } catch (Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
         
-        return ResponseEntity.status(HttpStatus.CREATED).body(resp);
+        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 }

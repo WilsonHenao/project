@@ -28,8 +28,8 @@ public class QuestionService {
     public QuestionDto save(QuestionDto questionEntity) throws Exception {
         QuestionEntity question = modelMapper.map(questionEntity, QuestionEntity.class);
         question = questionRepository.save(question);
-        QuestionDto resp = modelMapper.map(question, QuestionDto.class);
+        QuestionDto dto = modelMapper.map(question, QuestionDto.class);
         
-        return resp;
+        return dto;
     }
 }
