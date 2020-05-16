@@ -17,8 +17,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 public class ExamDto {
+    private Long id;
     private String introduction;
     private int maximumNote;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getIntroduction() {
         return introduction;
