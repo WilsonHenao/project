@@ -28,8 +28,8 @@ public class RoleService {
     public RoleDto save(RoleDto roleEntity) throws Exception {
         RoleEntity role = modelMapper.map(roleEntity, RoleEntity.class);
         role = roleRepository.save(role);
-        RoleDto resp = modelMapper.map(role, RoleDto.class);
+        RoleDto dto = modelMapper.map(role, RoleDto.class);
         
-        return resp;
+        return dto;
     }
 }

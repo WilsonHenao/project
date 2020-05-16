@@ -28,8 +28,8 @@ public class OptionsService {
     public OptionsDto save(OptionsDto optionsEntity) throws Exception {
         OptionsEntity option = modelMapper.map(optionsEntity, OptionsEntity.class);
         option = optionsRepository.save(option);
-        OptionsDto resp = modelMapper.map(option, OptionsDto.class);
+        OptionsDto dto = modelMapper.map(option, OptionsDto.class);
         
-        return resp;
+        return dto;
     }
 }

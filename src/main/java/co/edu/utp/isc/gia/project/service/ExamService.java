@@ -29,8 +29,8 @@ public class ExamService {
     public ExamDto save(ExamDto examEntity) throws Exception {
         ExamEntity exam = modelMapper.map(examEntity, ExamEntity.class);
         exam = examRepository.save(exam);
-        ExamDto resp = modelMapper.map(exam, ExamDto.class);
+        ExamDto dto = modelMapper.map(exam, ExamDto.class);
         
-        return resp;
+        return dto;
     }
 }

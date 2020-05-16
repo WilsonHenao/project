@@ -33,13 +33,13 @@ public class RoleController {
             return ResponseEntity.badRequest().body("Dato no válido");
         }
         
-        RoleDto resp;
+        RoleDto dto;
         try {
-            resp = roleService.save(roleEntity);
+            dto = roleService.save(roleEntity);
         } catch (Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
         
-        return ResponseEntity.status(HttpStatus.CREATED).body(resp);
+        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 }
