@@ -32,15 +32,15 @@ public class TypeOfResponseController {
     }
     
     @GetMapping
-    public ResponseEntity<?> findAll(){
+    public ResponseEntity<?> findAll() {
         List<TypeOfResponseDto> responseDtos;
-        
+
         try {
             responseDtos = typeOfResponseService.findAll();
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
-        
+
         return ResponseEntity.status(HttpStatus.OK).body(responseDtos);
     }
     

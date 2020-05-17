@@ -7,6 +7,7 @@ package co.edu.utp.isc.gia.project.web.controller;
 
 import co.edu.utp.isc.gia.project.service.ExamService;
 import co.edu.utp.isc.gia.project.web.dto.ExamDto;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,27 +25,41 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/exam")
 @CrossOrigin(origins = "*")
 public class ExamController {
+
     private final ExamService examService;
-    
-    public ExamController(ExamService examService){
+
+    public ExamController(ExamService examService) {
         this.examService = examService;
     }
-    
+
     @PostMapping
-    public ResponseEntity<?>insert(@RequestBody ExamDto examDto){
+    public ResponseEntity<?> insert(@RequestBody ExamDto examDto) {
         System.out.println(examDto.getId());
-        if(examDto != null){
+        if (examDto != null) {
         } else {
             return ResponseEntity.badRequest().body("Dato no válido");
         }
-        
+
         ExamDto exam;
         try {
             exam = examService.save(examDto);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
-        
+
         return ResponseEntity.status(HttpStatus.CREATED).body(exam);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> findAll() {
+        List<ExamDto> examDtos;
+
+        try {
+            examDtos = examService.findAll();
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(examDtos);
     }
 }

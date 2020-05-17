@@ -35,10 +35,10 @@ public class TypeOfResponseService {
         return dto;
     }
     
-    public List<TypeOfResponseDto> findAll(){
+    public List<TypeOfResponseDto> findAll() {
         Iterable<TypeOfResponseEntity> list = typeOfResponseRepository.findAll();
         List<TypeOfResponseDto> dtos = new ArrayList();
-        for(TypeOfResponseEntity entity : list) {
+        for (TypeOfResponseEntity entity : list) {
             dtos.add(modelMapper.map(entity, TypeOfResponseDto.class));
         }
         return dtos;
