@@ -8,8 +8,6 @@ package co.edu.utp.isc.gia.project.data.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -26,17 +24,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "Opciones")
 public class OptionsEntity implements Serializable {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "Opcion", nullable = false)
     private String options;
-    
-    @Column(name = "Respuesta_Correcta", nullable = false)
-    private String correctAnswer;
-    
+
     @Column(name = "Pregunta", nullable = false)
     private int question;
 }

@@ -34,7 +34,6 @@ public class ExamController {
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody ExamDto examDto) {
-        System.out.println(examDto.getId());
         if (examDto != null) {
         } else {
             return ResponseEntity.badRequest().body("Dato no válido");

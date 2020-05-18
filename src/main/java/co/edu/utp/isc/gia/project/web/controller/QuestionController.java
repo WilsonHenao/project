@@ -7,8 +7,11 @@ package co.edu.utp.isc.gia.project.web.controller;
 
 import co.edu.utp.isc.gia.project.service.QuestionService;
 import co.edu.utp.isc.gia.project.web.dto.QuestionDto;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("api/v1/question")
+@CrossOrigin(origins = "*")
 public class QuestionController {
     
     private final QuestionService questionService;
@@ -42,5 +46,18 @@ public class QuestionController {
         }
         
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    }
+    
+    @GetMapping("/all")
+    public ResponseEntity<?> findAll() {
+        List<QuestionDto> questionDtos;
+
+        try {
+            questionDtos = questionService.findAll();
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(questionDtos);
     }
 }

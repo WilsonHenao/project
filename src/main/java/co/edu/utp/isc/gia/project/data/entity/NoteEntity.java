@@ -8,8 +8,6 @@ package co.edu.utp.isc.gia.project.data.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -26,20 +24,19 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "Notas")
 public class NoteEntity implements Serializable {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "Id_Profesor")
     private int idTeacher;
-    
+
     @Column(name = "Id_Estudiante")
     private int idStudent;
-    
+
     @Column(name = "Id_Examen")
     private int idExam;
-    
+
     @Column(name = "Nota_Final")
     private float finalNote;
 }

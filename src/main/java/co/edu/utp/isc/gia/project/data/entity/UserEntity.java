@@ -8,8 +8,6 @@ package co.edu.utp.isc.gia.project.data.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -28,18 +26,17 @@ import lombok.Setter;
 public class UserEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "Nombre", nullable = false)
     private String name;
-    
+
     @Column(name = "Nombre_Usuario", nullable = false)
     private String username;
-    
+
     @Column(name = "Clave", nullable = false)
     private String password;
-    
+
     @Column(name = "Rol_Usuario", nullable = false)
     private int roleUser;
 }

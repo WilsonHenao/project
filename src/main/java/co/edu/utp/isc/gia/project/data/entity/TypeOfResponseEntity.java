@@ -8,8 +8,6 @@ package co.edu.utp.isc.gia.project.data.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -26,11 +24,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "Tipo_de_Respuesta")
 public class TypeOfResponseEntity implements Serializable {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "Nombre_de_Tipo")
     private String responseTypeName;
 }
