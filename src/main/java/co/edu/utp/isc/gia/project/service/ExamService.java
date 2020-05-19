@@ -10,6 +10,7 @@ import co.edu.utp.isc.gia.project.data.repository.ExamRepository;
 import co.edu.utp.isc.gia.project.web.dto.ExamDto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,12 @@ public class ExamService {
         for (ExamEntity entity : list) {
             dtos.add(modelMapper.map(entity, ExamDto.class));
         }
+        return dtos;
+    }
+    
+    public List<ExamDto> findById(Long id) {
+        Optional<ExamEntity> list = examRepository.findById(id);
+        List<ExamDto> dtos = new ArrayList();
         return dtos;
     }
 }

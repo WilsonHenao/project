@@ -43,4 +43,9 @@ public class QuestionService {
         }
         return dtos;
     }
+    
+    public List<QuestionDto> findAllByExam(int idExam) {
+        Iterable<QuestionEntity> entitys = questionRepository.findByExam(idExam);
+        
+    }
 }
