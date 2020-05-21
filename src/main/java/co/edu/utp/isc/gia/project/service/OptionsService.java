@@ -10,6 +10,7 @@ import co.edu.utp.isc.gia.project.data.repository.OptionsRepository;
 import co.edu.utp.isc.gia.project.web.dto.OptionsDto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,12 @@ public class OptionsService {
         for (OptionsEntity entity : list) {
             dtos.add(modelMapper.map(entity, OptionsDto.class));
         }
+        return dtos;
+    }
+    
+    public List<OptionsDto> findById(Long id) {
+        Optional<OptionsEntity> list = optionsRepository.findById(id);
+        List<OptionsDto> dtos = new ArrayList();
         return dtos;
     }
 }

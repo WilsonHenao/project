@@ -60,4 +60,17 @@ public class OptionsController {
 
         return ResponseEntity.status(HttpStatus.OK).body(optionsDtos);
     }
+    
+    @GetMapping()
+    public ResponseEntity<?> findById(Long id) {
+        List<OptionsDto> optionsDtos;
+
+        try {
+            optionsDtos = optionsService.findById(id);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(optionsDtos);
+    }
 }

@@ -10,6 +10,7 @@ import co.edu.utp.isc.gia.project.data.repository.QuestionRepository;
 import co.edu.utp.isc.gia.project.web.dto.QuestionDto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +45,9 @@ public class QuestionService {
         return dtos;
     }
     
-    public List<QuestionDto> findAllByExam(int idExam) {
-        Iterable<QuestionEntity> entitys = questionRepository.findByExam(idExam);
-        
+    public List<QuestionDto> findById(Long id) {
+        Optional<QuestionEntity> list = questionRepository.findById(id);
+        List<QuestionDto> dtos = new ArrayList();
+        return dtos;
     }
 }

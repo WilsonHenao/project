@@ -8,6 +8,9 @@ package co.edu.utp.isc.gia.project.service;
 import co.edu.utp.isc.gia.project.data.entity.AnswerEntity;
 import co.edu.utp.isc.gia.project.data.repository.AnswerRepository;
 import co.edu.utp.isc.gia.project.web.dto.AnswerDto;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +34,20 @@ public class AnswerService {
         AnswerDto dto = modelMapper.map(answer, AnswerDto.class);
         
         return dto;
+    }
+    
+    public List<AnswerDto> findAll() {
+        Iterable<AnswerEntity> list = answerRepository.findAll();
+        List<AnswerDto> dtos = new ArrayList();
+        for (AnswerEntity entity : list) {
+            dtos.add(modelMapper.map(entity, AnswerDto.class));
+        }
+        return dtos;
+    }
+    
+    public List<AnswerDto> findById(Long id) {
+        Optional<AnswerEntity> list = answerRepository.findById(id);
+        List<AnswerDto> dtos = new ArrayList();
+        return dtos;
     }
 }

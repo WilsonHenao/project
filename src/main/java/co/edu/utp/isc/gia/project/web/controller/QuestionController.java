@@ -60,4 +60,17 @@ public class QuestionController {
 
         return ResponseEntity.status(HttpStatus.OK).body(questionDtos);
     }
+    
+    @GetMapping()
+    public ResponseEntity<?> findById(Long id) {
+        List<QuestionDto> questionDtos;
+
+        try {
+            questionDtos = questionService.findById(id);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(questionDtos);
+    }
 }

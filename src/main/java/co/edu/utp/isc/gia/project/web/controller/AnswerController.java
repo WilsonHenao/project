@@ -7,8 +7,10 @@ package co.edu.utp.isc.gia.project.web.controller;
 
 import co.edu.utp.isc.gia.project.service.AnswerService;
 import co.edu.utp.isc.gia.project.web.dto.AnswerDto;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,5 +43,31 @@ public class AnswerController {
         }
         
         return ResponseEntity.status(HttpStatus.CREATED).body(answer);
+    }
+    
+    @GetMapping("/all")
+    public ResponseEntity<?> findAll() {
+        List<AnswerDto> answerDtos;
+
+        try {
+            answerDtos = answerService.findAll();
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(answerDtos);
+    }
+    
+    @GetMapping()
+    public ResponseEntity<?> findById(Long id) {
+        List<AnswerDto> answerDtos;
+
+        try {
+            answerDtos = answerService.findById(id);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(answerDtos);
     }
 }
