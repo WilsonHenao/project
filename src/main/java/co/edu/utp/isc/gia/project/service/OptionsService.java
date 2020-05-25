@@ -45,9 +45,12 @@ public class OptionsService {
         return dtos;
     }
     
-    public List<OptionsDto> findById(Long id) {
-        Optional<OptionsEntity> list = optionsRepository.findById(id);
+    public List<OptionsDto> findByQuestion(Integer idQuestion) {
+        Iterable<OptionsEntity> oes = optionsRepository.findByQuestion(idQuestion);
         List<OptionsDto> dtos = new ArrayList();
+        for (OptionsEntity entity : oes) {
+            dtos.add(modelMapper.map(entity, OptionsDto.class));
+        }
         return dtos;
     }
 }
