@@ -45,9 +45,18 @@ public class QuestionService {
         return dtos;
     }
     
-    public List<QuestionDto> findById(Long id) {
-        Optional<QuestionEntity> list = questionRepository.findById(id);
+    public QuestionDto findById(Long id) {
+        Optional<QuestionEntity> optional = questionRepository.findById(id);
+        QuestionDto questionDto = modelMapper.map(optional, QuestionDto.class);
+        return questionDto;
+    }
+    
+    public List<QuestionDto> findByExam(Integer idExam) {
+        Iterable<QuestionEntity> qes = questionRepository.findByExam(idExam);
         List<QuestionDto> dtos = new ArrayList();
+        for (QuestionEntity entity : qes) {
+            dtos.add(modelMapper.map(entity, QuestionDto.class));
+        }
         return dtos;
     }
 }

@@ -33,14 +33,14 @@ public class OptionsController {
     }
     
     @PostMapping
-    public ResponseEntity<?>insert(@RequestBody OptionsDto optionsEntity) {
-        if(optionsEntity == null) {
+    public ResponseEntity<?>insert(@RequestBody OptionsDto optionsDto) {
+        if(optionsDto == null) {
             return ResponseEntity.badRequest().body("Datos no válidos");
         }
         
         OptionsDto dto;
         try {
-            dto = optionsService.save(optionsEntity);
+            dto = optionsService.save(optionsDto);
         } catch (Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }

@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,14 +34,14 @@ public class QuestionController {
     }
     
     @PostMapping
-    public ResponseEntity<?> insert(@RequestBody QuestionDto questionEntity) {
-        if(questionEntity == null) {
+    public ResponseEntity<?> insert(@RequestBody QuestionDto questionDto) {
+        if(questionDto == null) {
             return ResponseEntity.badRequest().body("Dato no válido");
         }
         
         QuestionDto dto;
         try {
-            dto = questionService.save(questionEntity);
+            dto = questionService.save(questionDto);
         } catch (Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
@@ -61,9 +62,9 @@ public class QuestionController {
         return ResponseEntity.status(HttpStatus.OK).body(questionDtos);
     }
     
-    @GetMapping()
-    public ResponseEntity<?> findById(Long id) {
-        List<QuestionDto> questionDtos;
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable("id") Long id) {
+        QuestionDto questionDtos;
 
         try {
             questionDtos = questionService.findById(id);
@@ -71,6 +72,19 @@ public class QuestionController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
 
+        return ResponseEntity.status(HttpStatus.OK).body(questionDtos);
+    }
+    
+    @GetMapping("/exam/{id}")
+    public ResponseEntity<?> findByExam(@PathVariable("id") int id) {
+        List<QuestionDto> questionDtos;
+        
+        try {
+            questionDtos = questionService.findByExam(id);
+        }catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+        
         return ResponseEntity.status(HttpStatus.OK).body(questionDtos);
     }
 }

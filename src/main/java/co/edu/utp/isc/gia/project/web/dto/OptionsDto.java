@@ -5,6 +5,7 @@
  */
 package co.edu.utp.isc.gia.project.web.dto;
 
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class OptionsDto {
+public class OptionsDto implements Serializable{
     private Long id;
     private String options;
     private int question;
