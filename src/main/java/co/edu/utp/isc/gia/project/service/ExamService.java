@@ -45,10 +45,4 @@ public class ExamService {
         }
         return dtos;
     }
-    
-    public List<ExamDto> findById(Long id) {
-        Optional<ExamEntity> list = examRepository.findById(id);
-        List<ExamDto> dtos = new ArrayList();
-        return dtos;
-    }
 }

@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,29 +26,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/option")
 @CrossOrigin(origins = "*")
 public class OptionsController {
-    
+
     private final OptionsService optionsService;
-    
-    public OptionsController(OptionsService optionsService){
+
+    public OptionsController(OptionsService optionsService) {
         this.optionsService = optionsService;
     }
-    
+
     @PostMapping
-    public ResponseEntity<?>insert(@RequestBody OptionsDto optionsDto) {
-        if(optionsDto == null) {
+    public ResponseEntity<?> insert(@RequestBody OptionsDto optionsDto) {
+        if (optionsDto == null) {
             return ResponseEntity.badRequest().body("Datos no válidos");
         }
-        
+
         OptionsDto dto;
         try {
             dto = optionsService.save(optionsDto);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
-        
+
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
-    
+
     @GetMapping("/all")
     public ResponseEntity<?> findAll() {
         List<OptionsDto> optionsDtos;
@@ -60,13 +61,13 @@ public class OptionsController {
 
         return ResponseEntity.status(HttpStatus.OK).body(optionsDtos);
     }
-    
-    @GetMapping()
-    public ResponseEntity<?> findById(Long id) {
+
+    @GetMapping("/exam/{id}")
+    public ResponseEntity<?> findByQuestion(@PathVariable("id") int id) {
         List<OptionsDto> optionsDtos;
 
         try {
-            optionsDtos = optionsService.findById(id);
+            optionsDtos = optionsService.findByQuestion(id);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }

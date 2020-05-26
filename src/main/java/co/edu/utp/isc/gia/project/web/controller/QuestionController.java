@@ -26,29 +26,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/question")
 @CrossOrigin(origins = "*")
 public class QuestionController {
-    
+
     private final QuestionService questionService;
-    
-    public QuestionController(QuestionService questionService){
+
+    public QuestionController(QuestionService questionService) {
         this.questionService = questionService;
     }
-    
+
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody QuestionDto questionDto) {
-        if(questionDto == null) {
+        if (questionDto == null) {
             return ResponseEntity.badRequest().body("Dato no válido");
         }
-        
+
         QuestionDto dto;
         try {
             dto = questionService.save(questionDto);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
-        
+
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
-    
+
     @GetMapping("/all")
     public ResponseEntity<?> findAll() {
         List<QuestionDto> questionDtos;
@@ -61,7 +61,7 @@ public class QuestionController {
 
         return ResponseEntity.status(HttpStatus.OK).body(questionDtos);
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Long id) {
         QuestionDto questionDtos;
@@ -74,17 +74,17 @@ public class QuestionController {
 
         return ResponseEntity.status(HttpStatus.OK).body(questionDtos);
     }
-    
+
     @GetMapping("/exam/{id}")
     public ResponseEntity<?> findByExam(@PathVariable("id") int id) {
         List<QuestionDto> questionDtos;
-        
+
         try {
             questionDtos = questionService.findByExam(id);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
-        
+
         return ResponseEntity.status(HttpStatus.OK).body(questionDtos);
     }
 }

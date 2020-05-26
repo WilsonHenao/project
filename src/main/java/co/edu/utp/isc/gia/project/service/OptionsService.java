@@ -10,7 +10,6 @@ import co.edu.utp.isc.gia.project.data.repository.OptionsRepository;
 import co.edu.utp.isc.gia.project.web.dto.OptionsDto;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -20,22 +19,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class OptionsService {
+
     private final OptionsRepository optionsRepository;
     private final ModelMapper modelMapper;
-    
-    public OptionsService(OptionsRepository optionsRepository, ModelMapper modelMapper){
+
+    public OptionsService(OptionsRepository optionsRepository, ModelMapper modelMapper) {
         this.optionsRepository = optionsRepository;
         this.modelMapper = modelMapper;
     }
-    
+
     public OptionsDto save(OptionsDto optionsEntity) throws Exception {
         OptionsEntity option = modelMapper.map(optionsEntity, OptionsEntity.class);
         option = optionsRepository.save(option);
         OptionsDto dto = modelMapper.map(option, OptionsDto.class);
-        
+
         return dto;
     }
-    
+
     public List<OptionsDto> findAll() {
         Iterable<OptionsEntity> list = optionsRepository.findAll();
         List<OptionsDto> dtos = new ArrayList();
@@ -44,7 +44,7 @@ public class OptionsService {
         }
         return dtos;
     }
-    
+
     public List<OptionsDto> findByQuestion(Integer idQuestion) {
         Iterable<OptionsEntity> oes = optionsRepository.findByQuestion(idQuestion);
         List<OptionsDto> dtos = new ArrayList();

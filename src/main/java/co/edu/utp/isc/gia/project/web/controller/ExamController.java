@@ -61,17 +61,4 @@ public class ExamController {
 
         return ResponseEntity.status(HttpStatus.OK).body(examDtos);
     }
-    
-    @GetMapping()
-    public ResponseEntity<?> findById(Long id) {
-        List<ExamDto> examDtos;
-
-        try {
-            examDtos = examService.findById(id);
-        } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(examDtos);
-    }
 }

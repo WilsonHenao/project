@@ -20,22 +20,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class QuestionService {
+
     private final QuestionRepository questionRepository;
     private final ModelMapper modelMapper;
-    
-    public QuestionService(QuestionRepository questionRepository, ModelMapper modelMapper){
+
+    public QuestionService(QuestionRepository questionRepository, ModelMapper modelMapper) {
         this.questionRepository = questionRepository;
         this.modelMapper = modelMapper;
     }
-    
+
     public QuestionDto save(QuestionDto questionEntity) throws Exception {
         QuestionEntity question = modelMapper.map(questionEntity, QuestionEntity.class);
         question = questionRepository.save(question);
         QuestionDto dto = modelMapper.map(question, QuestionDto.class);
-        
+
         return dto;
     }
-    
+
     public List<QuestionDto> findAll() {
         Iterable<QuestionEntity> list = questionRepository.findAll();
         List<QuestionDto> dtos = new ArrayList();
@@ -44,13 +45,13 @@ public class QuestionService {
         }
         return dtos;
     }
-    
+
     public QuestionDto findById(Long id) {
         Optional<QuestionEntity> optional = questionRepository.findById(id);
         QuestionDto questionDto = modelMapper.map(optional, QuestionDto.class);
         return questionDto;
     }
-    
+
     public List<QuestionDto> findByExam(Integer idExam) {
         Iterable<QuestionEntity> qes = questionRepository.findByExam(idExam);
         List<QuestionDto> dtos = new ArrayList();
