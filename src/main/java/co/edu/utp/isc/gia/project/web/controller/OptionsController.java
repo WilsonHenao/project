@@ -62,7 +62,7 @@ public class OptionsController {
         return ResponseEntity.status(HttpStatus.OK).body(optionsDtos);
     }
 
-    @GetMapping("/exam/{id}")
+    @GetMapping("/question/{id}")
     public ResponseEntity<?> findByQuestion(@PathVariable("id") int id) {
         List<OptionsDto> optionsDtos;
 
