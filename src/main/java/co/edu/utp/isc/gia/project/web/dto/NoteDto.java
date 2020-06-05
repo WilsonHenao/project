@@ -17,10 +17,19 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 public class NoteDto {
+    private Long id;
     private int idTeacher;
     private int idStudent;
     private int idExam;
     private float finalNote;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getIdTeacher() {
         return idTeacher;

@@ -8,6 +8,8 @@ package co.edu.utp.isc.gia.project.service;
 import co.edu.utp.isc.gia.project.data.entity.NoteEntity;
 import co.edu.utp.isc.gia.project.data.repository.NoteRepository;
 import co.edu.utp.isc.gia.project.web.dto.NoteDto;
+import java.util.ArrayList;
+import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,14 @@ public class NoteService {
         NoteDto dto = modelMapper.map(note, NoteDto.class);
         
         return dto;
+    }
+    
+    public List<NoteDto> findAll() {
+        Iterable<NoteEntity> list = noteRepository.findAll();
+        List<NoteDto> dtos = new ArrayList();
+        for (NoteEntity entity : list) {
+            dtos.add(modelMapper.map(entity, NoteDto.class));
+        }
+        return dtos;
     }
 }

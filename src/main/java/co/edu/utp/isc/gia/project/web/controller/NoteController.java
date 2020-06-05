@@ -7,8 +7,11 @@ package co.edu.utp.isc.gia.project.web.controller;
 
 import co.edu.utp.isc.gia.project.service.NoteService;
 import co.edu.utp.isc.gia.project.web.dto.NoteDto;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("api/v1/note")
+@CrossOrigin(origins = "*")
 public class NoteController {
     private final NoteService noteService;
     
@@ -42,4 +46,18 @@ public class NoteController {
         
         return ResponseEntity.status(HttpStatus.CREATED).body(note);
     }
+    
+    @GetMapping("/all")
+    public ResponseEntity<?> findAll() {
+        List<NoteDto> noteDtos;
+
+        try {
+            noteDtos = noteService.findAll();
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(noteDtos);
+    }
+
 }

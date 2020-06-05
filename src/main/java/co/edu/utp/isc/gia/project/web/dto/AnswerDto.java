@@ -17,9 +17,18 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 public class AnswerDto {
+    private Long id;
     private String answer;
     private int question;
     private int idStudent;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getAnswer() {
         return answer;
