@@ -47,8 +47,8 @@ public class QuestionService {
     }
 
     public QuestionDto findById(Long id) {
-        Optional<QuestionEntity> optional = questionRepository.findById(id);
-        QuestionDto questionDto = modelMapper.map(optional, QuestionDto.class);
+        Optional<QuestionEntity> questionEntity = questionRepository.findById(id);
+        QuestionDto questionDto = modelMapper.map(questionEntity.get(), QuestionDto.class);
         return questionDto;
     }
 

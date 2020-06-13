@@ -45,9 +45,9 @@ public class AnswerService {
         return dtos;
     }
     
-    public List<AnswerDto> findById(Long id) {
-        Optional<AnswerEntity> list = answerRepository.findById(id);
-        List<AnswerDto> dtos = new ArrayList();
-        return dtos;
+    public AnswerDto findByQuestion(Integer idQuestion) {
+        Optional<AnswerEntity> optional = answerRepository.findByQuestion(idQuestion);
+        AnswerDto answerDto = modelMapper.map(optional.get(), AnswerDto.class);
+        return answerDto;
     }
 }
