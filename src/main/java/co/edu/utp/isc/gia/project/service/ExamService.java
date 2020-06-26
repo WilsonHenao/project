@@ -45,4 +45,10 @@ public class ExamService {
         }
         return dtos;
     }
+    
+    public ExamDto findById(Long id) {
+        Optional<ExamEntity> optional = examRepository.findById(id);
+        ExamDto examDto = modelMapper.map(optional.get(), ExamDto.class);
+        return examDto;
+    }
 }

@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OptionsRepository extends CrudRepository<OptionsEntity, Long> {
     
-    public Iterable<OptionsEntity> findByQuestion(int idExam);
+    public Iterable<OptionsEntity> findByQuestion(int idQuestion);
 }

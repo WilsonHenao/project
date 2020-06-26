@@ -6,6 +6,7 @@
 package co.edu.utp.isc.gia.project.data.repository;
 
 import co.edu.utp.isc.gia.project.data.entity.AnswerEntity;
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +17,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AnswerRepository extends CrudRepository<AnswerEntity, Long> {
     
+    public Optional<AnswerEntity> findByQuestion(int idQuestion);
 }
